@@ -1,1 +1,1 @@
-# RISC-V-based-on-processor
+# RV32I
