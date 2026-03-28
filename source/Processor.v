@@ -111,6 +111,10 @@ module Processor(
             W_res_we <= E_res_we;
             W_dest <= E_dest;
             W_result <= ex_write_data;
+            
+            IDE_s1 <= (E_we && (E_dest == s1_addr)) ? (E_opcode == 4'b1100 ? E_data : ex_write_data) : IDE_s1;
+            IDE_s2 <= (E_we && (E_dest == s2_addr)) ? (E_opcode == 4'b1100 ? E_data : ex_write_data) : IDE_s2;
+
         end
     end
        
@@ -147,8 +151,8 @@ module Processor(
     ALU alu(
         .clk(clk),
         .rst(rst),
-        .a(E_s1),
-        .b(E_s2),
+        .a(IDE_s1),
+        .b(IDE_s2),
         .opcode(E_opcode),
         .result(alu_result)
     );

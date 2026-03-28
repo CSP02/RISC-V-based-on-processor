@@ -2,7 +2,7 @@ module RegisterFile (
     input clk, we,
     input [2:0] dest_addr, s1_addr, s2_addr,
     input [7:0] write_data, 
-    output reg [7:0] s1, s2 
+    output [7:0] s1, s2 
 );
     reg [7:0] registers [7:0];     
     integer i;  
@@ -15,8 +15,8 @@ module RegisterFile (
         if (we) registers[dest_addr] <= write_data;
     end
 
-    always @(*) begin
-        s1 <= registers[s1_addr];
-        s2 <= registers[s2_addr];
-    end
+//    always @(*) begin
+        assign s1 = registers[s1_addr];
+        assign s2 = registers[s2_addr];
+//    end
 endmodule
